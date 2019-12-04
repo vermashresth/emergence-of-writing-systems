@@ -3,3 +3,5 @@
 !*.ipynb
 !*.md
 !*.gitignore
+!feature_extractors/
+!feature_extractors/*
