@@ -1,5 +1,8 @@
+import numpy as np
+import random
+
 class Game(object):
-    def __init__(self, f, c, s, v, sender_type, debug=False):
+    def __init__(self, f, c, s, v, sender_type, data, debug=False):
         self.f = f
         self.c = c
         self.s = s
@@ -8,16 +11,13 @@ class Game(object):
         self.states = []
         self.sender_type = sender_type
         self.debug=debug
-        global X1, Y1
+        self.X1 = data[0]
+        self.Y1=data[1]
         self.reset()
 
-    def getData(self):
-        return X1, Y1
-
     def reset(self):
-        global X1, Y1
         self.nos = np.random.choice(range(self.c), self.s, replace=False).tolist()
-        self.states = [X1[Y1==i][np.random.choice(X1[Y1==i].shape[0], 1)][0] for i in self.nos]
+        self.states = [self.X1[self.Y1==i][np.random.choice(self.X1[self.Y1==i].shape[0], 1)][0] for i in self.nos]
         self.target = 0
 
     def speaker_input(self, img):

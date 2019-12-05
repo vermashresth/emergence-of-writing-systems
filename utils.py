@@ -9,7 +9,7 @@ import numpy as np
 
 
 def get_feature_extractor_model(model_path, json_path):
-    json_file = open(json_path', 'r')
+    json_file = open(json_path, 'r')
     intermediate_layer_model = json_file.read()
     json_file.close()
 
@@ -57,7 +57,7 @@ def message_to_image(strokes, img_rows, img_cols, stroke_width=5):
     img = img/255
     return img
 
-def message_to_image_sm(strokes, stroke_width=2, h=10, w=10):
+def message_to_image_sm(strokes, h=10, w=10, stroke_width=2):
 
     draw =  Drawing()
     draw.stroke_color = Color('white')
