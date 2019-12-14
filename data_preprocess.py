@@ -1,6 +1,13 @@
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.datasets import make_classification, make_blobs
+
+def get_dummy_data(n_samples, n_features, centers):
+    X1, Y1 = make_blobs(n_samples, n_features, centers)
+    scaler = MinMaxScaler()
+    X1 = scaler.fit_transform(X1)
+    return X1, Y1, X1.shape[1]
 
 def get_data_points(csvpath, n_all_features, isNormalize=True, isPCA=True):
     df = pd.read_csv(csvpath)

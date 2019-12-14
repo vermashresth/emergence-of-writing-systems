@@ -20,7 +20,7 @@ class Game(object):
         self.states = [self.X1[self.Y1==i][np.random.choice(self.X1[self.Y1==i].shape[0], 1)][0] for i in self.nos]
         self.target = 0
 
-    def speaker_input(self, img):
+    def speaker_input(self, img=None):
         if self.sender_type == "aware":
             inp = list(np.array(self.states).flatten())
         elif self.sender_type=="agnostic":
@@ -28,7 +28,8 @@ class Game(object):
         else:
             print("Invalid sender type")
             return
-        inp.extend(list(img.flatten()))
+        if img!=None:
+            inp.extend(list(img.flatten()))
         return inp
 
     def listener_input(self, features):

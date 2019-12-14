@@ -27,6 +27,7 @@ img_features_len = 32
 n_batches = 32
 n_epochs = 10000000
 action_size = 6
+num_actins = img_dim
 
 ppo_config = "configs/ppo-big-200.json"
 network_config = "configs/mlp3_network-200.json"
@@ -44,7 +45,7 @@ class playGame:
 
 
         self.X1, self.Y1, n_features = get_data_points(data_csv_path, n_all_features)
-        self.Speaker, self.Listener = self.get_agents(ppo_config, network_config, sender_type, n_features, img_dim, img_features_len, n_samples, action_size)
+        self.Speaker, self.Listener = self.get_agents(ppo_config, network_config, sender_type, n_features, img_dim, img_features_len, n_samples, num_actions, action_size)
         self.intermediate_layer_model = get_feature_extractor_model(feat_model_path, feature_model_json_path)
 
         self.big_rewards = []
@@ -57,7 +58,7 @@ class playGame:
 
 
 
-    def get_agents(self, ppo_config, network_config, sender_type, n_features, img_dim, img_features_len, n_samples, action_size):
+    def get_agents(self, ppo_config, network_config, sender_type, n_features, img_dim, img_features_len, n_samples, num_actions, action_size):
 
         with open(ppo_config) as fp:
             agent_spec_big = json.load(fp)
@@ -74,7 +75,7 @@ class playGame:
             spec=agent_spec_big,
             kwargs=dict(
                 states=dict(type='float', shape=speaker_state_shape),
-                actions=dict(type='int', num_actions=img_dim, shape=(action_size,)),
+                actions=dict(type='int', num_actions=num_actions, shape=(action_size,)),
                 network=network_deep,
             )
         )
