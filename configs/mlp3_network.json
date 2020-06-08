@@ -1,0 +1,8 @@
+[
+
+    {
+        "type": "dense",
+        "size": 16,
+        "activation": "relu"
+    }
+]

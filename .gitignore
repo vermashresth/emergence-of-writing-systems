@@ -5,3 +5,5 @@
 !*.gitignore
 !feature_extractors/
 !feature_extractors/*
+!configs/
+!configs/*

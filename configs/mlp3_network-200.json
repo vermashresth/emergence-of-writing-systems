@@ -1,0 +1,17 @@
+[
+    {
+        "type": "dense",
+        "size": 200,
+        "activation": "relu"
+    },
+    {
+        "type": "dense",
+        "size": 200,
+        "activation": "relu"
+    },
+    {
+        "type": "dense",
+        "size": 200,
+        "activation": "relu"
+    }
+]
