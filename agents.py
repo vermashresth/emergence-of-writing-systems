@@ -36,7 +36,7 @@ def get_agents(ppo_config, network_config, sender_type, n_features, img_dim, img
 
     return Speaker, Listener
 
-def get__symbol_agents(n_features, n_samples, action_size):
+def get_symbol_agents(n_features, n_samples, action_size):
 
     if sender_type=="agnostic":
         speaker_state_shape = (n_features,)
