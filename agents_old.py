@@ -14,26 +14,22 @@ def get_agents(ppo_config, network_config, sender_type, n_features, img_dim, img
     elif sender_type=="aware":
         speaker_state_shape = (n_samples*n_features+img_dim*img_dim,)
 
-    kwargs=dict(
+    Speaker = Agent.from_spec(
+        spec=agent_spec_big,
+        kwargs=dict(
             states=dict(type='float', shape=speaker_state_shape),
-            actions=dict(type='int', num_values=num_actions, shape=(action_size,)),
+            actions=dict(type='int', num_actions=num_actions, shape=(action_size,)),
             network=network_deep,
         )
-    Speaker = Agent.create(
-        agent=agent_spec_big,
-        max_episode_timesteps=1,
-        **kwargs
     )
 
-    kwargs=dict(
+    Listener = Agent.from_spec(
+        spec=agent_spec_big,
+        kwargs=dict(
             states=dict(type='float', shape=(n_samples*n_features + img_features_len,)),
-            actions=dict(type='int', num_values=n_samples),
+            actions=dict(type='int', num_actions=n_samples),
             network=network_deep,
         )
-    Listener = Agent.create(
-        agent=agent_spec_big,
-        max_episode_timesteps=1,
-        **kwargs
     )
     Speaker.reset()
     Listener.reset()
@@ -69,4 +65,3 @@ def get_symbol_agents(n_features, n_samples, action_size):
         ],
         step_optimizer=dict(type='adam', learning_rate=1e-4)
     )
-
