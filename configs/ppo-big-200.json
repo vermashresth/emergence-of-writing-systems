@@ -38,7 +38,7 @@
         "seconds": 600
     },
     "summarizer": {
-        "directory": null,
+        "directory": "./model/PPO",
         "labels": ["graph", "total-loss"]
     },
     "execution": {
