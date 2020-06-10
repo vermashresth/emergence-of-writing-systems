@@ -4,7 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.datasets import make_classification, make_blobs
 
 def get_dummy_data(n_samples, n_features, centers):
-    X1, Y1 = make_blobs(n_samples, n_features, centers)
+    X1, Y1 = make_blobs(n_samples, n_features, centers, random_state=100)
     scaler = MinMaxScaler()
     X1 = scaler.fit_transform(X1)
     return X1, Y1, X1.shape[1]

@@ -28,7 +28,7 @@ class Game(object):
         else:
             print("Invalid sender type")
             return
-        if img!=None:
+        if img is not None:
             inp.extend(list(img.flatten()))
         return inp
 
